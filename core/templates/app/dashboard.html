@@ -1,0 +1,131 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Add Electronic Weight</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Electronic Weight</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="card">
+        <div class="card-header">
+            <a href="{% url 'dashboard_list' %}" class="btn btn-primary">Back</a>
+        </div>
+        <form id="quickForm" validate="validate" method="post">
+            {% csrf_token %}
+            <div class="card-body">
+                <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Chalan No.</label>
+                        <input type="text" class="form-control" name="c_no" placeholder="Chalan Number" required>
+                      </div>
+                    <div class="form-group">
+                        <label>Vehicle Number</label>
+                        <input type="text" class="form-control" name="v_number" placeholder="Vehicle No." required>
+                      </div>
+                      <div class="form-group">
+                        <label>Material</label>
+                        <input type="text" class="form-control" name="material" placeholder="Material" required>
+                      </div>
+                      <div class="form-group">
+                        <label>Vehicle Type</label>
+                        <select class="form-control" name="v_type" required>
+                            {% for item in v_type %}
+                                <option value="{{item.id}}" >{{ item.v_type }}</option>
+                            {% endfor %}
+                        </select>
+                      </div>
+                </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                    <label>Gross Weight</label>
+                    <input type="number" id="gross_weight" class="form-control" name="g_weight" placeholder="Gross Weight" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Tare Weight</label>
+                    <input type="number" id="tare_weight" class="form-control" name="t_weight" placeholder="Tare Weight" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Net Weight</label>
+                    <input readonly id="net_weight" type="number" class="form-control" name="n_weight" placeholder="Net Weight">
+                  </div>
+                  <div class="form-group">
+                    <label>Charge</label>
+                    <select class="form-control" name="charge" id="item_charge" readonly>
+                        {% for item in v_type %}
+                            <option class="{{item.id}}" >{{ item.charge }}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Total Amount</label>
+                    <input readonly id="total_amount" type="number" class="form-control" name="t_amount" placeholder="Total Amount">
+                  </div>
+                  
+              </div>
+              
+            
+            </div>
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </form>
+      </div>
+      <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+{% endblock %}
+
+{% block javascript %}
+<script>
+    var charge = $("[name=charge] option").detach()
+    $("[name=v_type]").change(function() {
+    var val = $(this).val()
+    $("[name=charge] option").detach()
+    charge.filter("." + val).clone().appendTo("[name=charge]")
+    }).change()
+
+    $('#gross_weight, #tare_weight').keyup(function(){
+        var gross_value = $('#gross_weight').val();
+        var tare_value = $('#tare_weight').val();
+        var net = gross_value - tare_value;
+        $('#net_weight').val(net);
+    })
+
+    $('#gross_weight, #tare_weight, #total_amount').keyup(function(){
+        var charge = $('#item_charge').val();
+        var net_weight = $('#net_weight').val();
+        var total = charge * net_weight;
+        $('#total_amount').val(total);
+    })
+    
+    
+
+    
+</script>
+{% endblock %}

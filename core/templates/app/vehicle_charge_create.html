@@ -1,0 +1,68 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Add Vehicle Charge</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Vehicle Charge</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="card">
+        <div class="card-header">
+            <a href="{% url 'v_charge_list' %}" class="btn btn-primary">Back</a>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="card-body">
+                <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Type</label>
+                        <select class="form-control" name="v_name" id="item_charge" readonly>
+                            {% for item in v_type %}
+                                <option value="{{ item.id }}">{{ item.v_type }}</option>
+                            {% endfor %}
+                        </select>
+                      </div>
+                </div> 
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Charge</label>
+                        <input type="text" class="form-control" name="charge" placeholder="Vehicle Name" required>
+                      </div>
+                </div>           
+            </div>
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </form>
+      </div>
+      <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+{% endblock %}
+

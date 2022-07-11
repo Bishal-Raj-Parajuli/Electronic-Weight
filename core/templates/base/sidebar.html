@@ -1,0 +1,44 @@
+{% load static %}
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+      <span class="brand-text font-weight-light">Electronic Weight</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          
+          <li class="nav-header">Side Bar</li>
+          <li class="nav-item">
+            <a href="{% url 'dashboard_list' %}" class="nav-link">
+              <i class="fas fa-circle nav-icon"></i>
+              <p>Electronic Weight</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'v_type_list' %}" class="nav-link">
+              <i class="fas fa-circle nav-icon"></i>
+              <p>Vehicle Type</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'v_charge_list' %}" class="nav-link">
+              <i class="fas fa-circle nav-icon"></i>
+              <p>Vehicle Charge</p>
+            </a>
+          </li>
+          
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>

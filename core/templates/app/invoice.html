@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | Invoice Print</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'css/adminlte.min.css' %}">
+</head>
+<body>
+<div class="wrapper m-2" style="border: solid; border-width: 3px; border-radius: 2px; padding-bottom: 100px;">
+  <!-- Main content -->
+  <section class="invoice">
+    <!-- title row -->
+    <div class="row">
+      <div class="col-12">
+        <h2 class="page-header text-center">
+          {{company.name}}
+        </h2>
+        <h4 class="text-center">
+          {{company.Address}}
+        </h4>
+        <h6 class="text-center">
+          {{ company.phone }}
+        </h6>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- info row -->
+    <div class="row invoice-info m-2 p-4"">
+      <div class="col-sm-6  invoice-col">
+        <chalan>
+          <strong>Slip No: </strong>{{object.chalan_no}}<br>
+          <strong>Chalan No: </strong><br>
+          <strong>Vehicle No: </strong>{{object.vehicle_no}}<br>
+          <strong>Vehicle Type: </strong>{{ object.Vehicle_Type }}<br>
+          <strong>Material: </strong>{{ object.material }}<br>
+          <strong>Weight Charge: </strong>Rs.{{ object.total_amount }}<br>
+        </chalan>
+      </div>
+      <!-- /.col -->
+      <div class="col-sm-6 invoice-col">
+        <b>Date: </b>{{ object.created_at }}<br>
+        <br>
+        <strong>Gross Weight: </strong>{{ object.gross_weight }}<br>
+        <strong>Tare weight: </strong>{{ object.tare_weight }}<br>
+        <strong>Net Weight: </strong>{{ object.net_weight }}<br>
+      </div>
+      <!-- /.col -->
+    </div>
+  </section>
+  <div class="mt-5 text-center" style="border-top: dotted; float: right; margin-right: 200px; width: 100px;">
+    <h6>Signature</h6>
+  </div>
+  <!-- /.content -->
+</div>
+
+<br>
+<div class="wrapper m-2" style="border: solid; border-width: 3px; border-radius: 2px; padding-bottom: 100px;">
+    <!-- Main content -->
+    <section class="invoice">
+      <!-- title row -->
+      <div class="row">
+        <div class="col-12">
+            <h2 class="page-header text-center">
+                {{company.name}}
+              </h2>
+              <h4 class="text-center">
+                {{company.Address}}
+              </h4>
+              <h6 class="text-center">
+                {{ company.phone }}
+              </h6>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- info row -->
+      <div class="row invoice-info m-2 p-4"">
+        <div class="col-sm-6  invoice-col">
+          <chalan>
+            <strong>Slip No: </strong>{{object.chalan_no}}<br>
+            <strong>Chalan No: </strong><br>
+            <strong>Vehicle No: </strong>{{object.vehicle_no}}<br>
+            <strong>Vehicle Type: </strong>{{ object.Vehicle_Type }}<br>
+            <strong>Material: </strong>{{ object.material }}<br>
+            <strong>Weight Charge: </strong>Rs.{{ object.total_amount }}<br>
+          </chalan>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-6 invoice-col">
+          <b>Date: </b>{{ object.created_at }}<br>
+          <br>
+          <strong>Gross Weight: </strong>{{ object.gross_weight }}<br>
+          <strong>Tare weight: </strong>{{ object.tare_weight }}<br>
+          <strong>Net Weight: </strong>{{ object.net_weight }}<br>
+        </div>
+        <!-- /.col -->
+      </div>
+    </section>
+    <div class="mt-5 text-center" style="border-top: dotted; float: right; margin-right: 200px; width: 100px;">
+      <h6>Signature</h6>
+    </div>
+    <!-- /.content -->
+  </div>
+<!-- ./wrapper -->
+<!-- Page specific script -->
+<script>
+  window.addEventListener("load", window.print());
+</script>
+</body>
+</html>
